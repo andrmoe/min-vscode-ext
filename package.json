@@ -1,0 +1,26 @@
+{
+  "name": "min-vscode-ext",
+  "displayName": "Run Command with Cursor Position",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "main": "./extension.js",
+  "activationEvents": ["onCommand:cursor-command.run"],
+  "contributes": {
+    "commands": [
+      {
+        "command": "cursor-command.run",
+        "title": "Run Terminal Command with Cursor Position"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "cursor-command.run",
+        "key": "ctrl+alt+c",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "categories": ["Other"]
+}
