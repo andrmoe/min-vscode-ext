@@ -22,14 +22,18 @@ def main(argv: list[str]) -> int:
         print(line[:cursor_col]+'^'+line[cursor_col:])
     with open(file_path, "r") as f:
         rows = list(f.readlines())
+        rows.append("")
         startrow = edit_info["selection"]["startrow"]
         startcol = edit_info["selection"]["startcol"]
         endrow = edit_info["selection"]["endrow"]
         endcol = edit_info["selection"]["endcol"]
-        selection = rows[startrow][startcol:]
+        if startrow == endrow:
+            selection = ""
+        else:
+            selection = rows[startrow][startcol:]
         for row in range(startrow+1, endrow):
             selection+=rows[row]
-        selection+=rows[endrow][:endcol]
+        selection+=rows[endrow][startcol if startrow == endrow else 0:endcol]
         print(selection)
     return 0
 
