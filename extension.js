@@ -15,11 +15,11 @@ function activate(context) {
 
       const filePath = editor.document.uri.fsPath;
       const position = editor.selection.active;
-      const line = position.line + 1; // 1-based
-      const column = position.character + 1;
+      const line = position.line; // 0-based
+      const column = position.character;
 
       // Example command — customize this
-      const command = `echo "${filePath} ${line} ${column}"`;
+      const command = `/home/andreas/min-vscode-ext/v/bin/python main.py ${filePath} ${line} ${column}`;
 
       const terminal =
         vscode.window.activeTerminal ||

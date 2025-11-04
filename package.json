@@ -22,5 +22,6 @@
       }
     ]
   },
-  "categories": ["Other"]
+  "categories": ["Other"],
+  "files": ["package.json", "extension.js"]
 }
