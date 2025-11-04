@@ -15,11 +15,23 @@ function activate(context) {
 
       const filePath = editor.document.uri.fsPath;
       const position = editor.selection.active;
-      const line = position.line; // 0-based
-      const column = position.character;
+      const selection = editor.selection;
+      const payload = {
+        file: filePath,
+        cursor: {
+          row: position.line,
+          col: position.character,
+        },
+        selection: {
+          startrow: selection.start.line,
+          startcol: selection.start.character,
+          endrow: selection.end.line,
+          endcol: selection.end.character,
+        },
+      };
 
-      // Example command — customize this
-      const command = `/home/andreas/min-vscode-ext/v/bin/python main.py ${filePath} ${line} ${column}`;
+      const jsonArg = JSON.stringify(payload).replace(/"/g, '\\"');
+      const command = `/home/andreas/min-vscode-ext/v/bin/python /home/andreas/min-vscode-ext/main.py '${jsonArg}'`;
 
       const terminal =
         vscode.window.activeTerminal ||
